@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\AuthByApiKey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,12 @@ Route::middleware(AuthByApiKey::class)->group(function () {
         ]);
     });
 
-    // 2
+    // 2,3
     Route::resource('/categories', CategoryController::class)->only(['index', 'store']);
+
+    // 4
+    Route::prefix('products')->group(function () {
+        Route::post('/', [ProductController::class, 'store']);
+        Route::post('/{id}/variations', [ProductController::class, 'storeVariations']);
+    });
 });
