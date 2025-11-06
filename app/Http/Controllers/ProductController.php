@@ -14,6 +14,17 @@ class ProductController extends Controller
             'title' => $request->input('title'),
         ];
 
+        $product = [
+            'error' => [
+                'code' => 'product_duplicate_sku',
+                'message' => 'SKU already exists.',
+                'data' => [
+                    'product_id' => 1,
+                    'sku' => $request->input('sku'),
+                ],
+            ],
+        ];
+
         return response()->json([
             'message' => 'Product Created',
             'data' => $product,
@@ -30,7 +41,7 @@ class ProductController extends Controller
             ],
             [
                 'error' => [
-                    'code' => 'product_duplicate_sku',
+                    'code' => 'variation_duplicate_sku',
                     'message' => 'SKU already exists.',
                     'data' => [
                         'variation_id' => 1,
