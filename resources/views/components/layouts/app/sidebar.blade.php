@@ -17,6 +17,8 @@
                 </flux:navlist.group>
             </flux:navlist>
 
+            <flux:navlist.item icon="home" :href="route('admin.products.index')" :current="request()->routeIs('admin.products.index')" wire:navigate>{{ __('Products') }}</flux:navlist.item>
+
             <flux:spacer />
 
             <flux:navlist variant="outline">
