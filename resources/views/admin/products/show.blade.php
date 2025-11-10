@@ -233,6 +233,6 @@
             idx = (idx + 1) % slides.length;
             slides[idx].style.display = 'block';
         }
-        setInterval(changeSlide, 3000);
+        setInterval(changeSlide, 1000);
     </script>
 </x-layouts.app>
