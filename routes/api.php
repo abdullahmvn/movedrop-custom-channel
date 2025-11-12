@@ -23,6 +23,8 @@ Route::middleware(AuthByApiKey::class)->group(function () {
         Route::post('/', [ProductController::class, 'store']);
         // 5
         Route::post('/{id}/variations', [ProductController::class, 'storeVariations']);
+        // 6
+        Route::delete('/{id}', [ProductController::class, 'destroy']);
     });
 
     Route::get('/orders', function (Request $request) {

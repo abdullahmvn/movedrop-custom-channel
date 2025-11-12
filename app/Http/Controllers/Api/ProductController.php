@@ -163,4 +163,14 @@ class ProductController extends Controller
             'data' => $variationsResponses,
         ], 201);
     }
+
+    public function destroy($id)
+    {
+        $product = Product::query()->findOrFail($id);
+        $product->delete();
+
+        return response()->json([
+            'message' => 'Product Deleted Successfully',
+        ], 200);
+    }
 }
