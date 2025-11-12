@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\WebhookController;
 use App\Http\Controllers\CategoryController;
@@ -27,12 +28,6 @@ Route::middleware(AuthByApiKey::class)->group(function () {
         Route::delete('/{id}', [ProductController::class, 'destroy']);
     });
 
-    Route::get('/orders', function (Request $request) {
-        return response()->json([
-            'orders' => [
-                ['id' => 1, 'item' => 'Product A', 'quantity' => 2],
-                ['id' => 2, 'item' => 'Product B', 'quantity' => 1],
-            ],
-        ]);
-    });
+    // 7
+    Route::get('/orders', [OrderController::class, 'index']);
 });
