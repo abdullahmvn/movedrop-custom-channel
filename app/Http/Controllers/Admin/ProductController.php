@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\WebhookEventEnum;
 use App\Http\Controllers\Controller;
 use App\Jobs\WebhookNotifierJob;
 use App\Models\Product;
@@ -35,7 +36,7 @@ class ProductController extends Controller
         $product->delete();
 
         // Fire event to notify using webhooks
-        WebhookNotifierJob::dispatch('product.deleted', [
+        WebhookNotifierJob::dispatch(WebhookEventEnum::PRODUCT_DELETED->value, [
             'id' => $id,
         ]);
 
