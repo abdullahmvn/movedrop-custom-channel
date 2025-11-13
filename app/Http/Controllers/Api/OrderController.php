@@ -22,4 +22,28 @@ class OrderController extends Controller
 
         return OrderResource::collection($orders);
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'status' => 'required|string',
+        ]);
+
+        $order = Order::query()->findOrFail($id);
+        $order->update($validated);
+
+        return new OrderResource($order);
+    }
+
+    public function storeTimeline(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        $order = Order::query()->findOrFail($id);
+        $order->timelines()->create($validated);
+
+        return new OrderResource($order);
+    }
 }

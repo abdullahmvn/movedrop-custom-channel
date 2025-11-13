@@ -13,8 +13,13 @@ class Order extends Model
         'shipping_address' => 'json',
     ];
 
-    public function orderItems (): HasMany
+    public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function timelines(): HasMany
+    {
+        return $this->hasMany(OrderTimeline::class);
     }
 }

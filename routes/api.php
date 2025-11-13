@@ -30,4 +30,8 @@ Route::middleware(AuthByApiKey::class)->group(function () {
 
     // 7
     Route::get('/orders', [OrderController::class, 'index']);
+    // 8
+    Route::put('/orders/{id}', [OrderController::class, 'update']);
+    // 9
+    Route::post('/orders/{id}/timelines', [OrderController::class, 'storeTimeline']);
 });
